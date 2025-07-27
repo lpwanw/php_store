@@ -14,6 +14,7 @@ $logger->info('Application started');
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // Define your routes
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
+    $r->addRoute('GET', '/tim-kiem-san-pham', ['App\Controllers\SanPhamController', 'timKiem']);
     // {id:\d+} means the 'id' parameter must be a digit
 });
 

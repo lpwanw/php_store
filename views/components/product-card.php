@@ -20,9 +20,9 @@ $sizeClasses = [
 $cardClass = $sizeClasses[$size] ?? $sizeClasses['medium'];
 ?>
 
-<div class="bg-card border rounded-lg overflow-hidden hover:shadow-lg transition-shadow <?= $cardClass ?>">
+<div class="card bg-card border rounded-lg overflow-hidden hover:shadow-lg transition-shadow <?= $cardClass ?>">
     <!-- Product Image -->
-    <div class="aspect-square bg-gray-100 flex items-center justify-center">
+    <div class="aspect-square flex items-center justify-center">
         <?php 
         $hinhAnhChinh = $sanPham->getHinhAnhChinh();
         if ($hinhAnhChinh): 
