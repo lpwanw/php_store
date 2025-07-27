@@ -23,6 +23,33 @@
               : !document.documentElement.classList.contains('dark'));
         });
       })();
+
+      function addToCart(variantId, quantity) {
+        const formData = new FormData();
+        formData.append('bien_the_id', variantId);
+        formData.append('so_luong', quantity);
+
+        fetch('/cart/add', {
+          method: 'POST',
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert(data.message);
+
+              // **NEW**: Update the cart count display
+              const cartCountElement = document.getElementById('cart-item-count');
+              if (cartCountElement && typeof data.cartItemCount !== 'undefined') {
+                cartCountElement.textContent = data.cartItemCount;
+              }
+
+            } else {
+              alert('Error: ' + data.message);
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,7 +89,8 @@
                 <!-- Cart Button -->
                 <button class="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57L23 6H6"/></svg>
-                    <span class="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+
+                    <span id="cart-item-count" class="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
                 </button>
 
                 <!-- User Menu -->

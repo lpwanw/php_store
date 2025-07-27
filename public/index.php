@@ -15,6 +15,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     // Define your routes
     $r->addRoute('GET', '/', ['App\Controllers\HomeController', 'index']);
     $r->addRoute('GET', '/tim-kiem-san-pham', ['App\Controllers\SanPhamController', 'timKiem']);
+    $r->addRoute('POST', '/cart/add', ['App\Controllers\GioHangController', 'themVaoGio']);
     // {id:\d+} means the 'id' parameter must be a digit
 });
 
