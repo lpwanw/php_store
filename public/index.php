@@ -3,9 +3,12 @@
 // 1. Include Composer's Autoloader
 require '../vendor/autoload.php';
 
+// Initialize logger
+use App\Services\Logger;
+$logger = Logger::getInstance();
+$logger->info('Application started');
+
 // 2. Define a simple view rendering function
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 // 3. Create the dispatcher using FastRoute
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
@@ -41,6 +44,8 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1]; // The controller/method array
         $vars = $routeInfo[2];    // The route parameters (e.g., ['id' => '123'])
+
+        $logger->info('Route found', ['handler' => $handler, 'method' => $httpMethod, 'uri' => $uri]);
 
         // Call the controller method
         $controller = new $handler[0]();
@@ -86,4 +91,13 @@ function admin_view(string $path, array $data = []): void
     // Now, include the main layout file.
     // The $content variable is now available to it.
     require '../views/layouts/admin.php';
+}
+
+function component(string $name, array $data = []): void
+{
+    // Make variables available to the component.
+    extract($data);
+    
+    // Include the component file.
+    require "../views/components/{$name}.php";
 }

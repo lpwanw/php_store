@@ -4,11 +4,11 @@ namespace App\Database;
 
 use PDO;
 use PDOException;
+use App\Services\Logger;
 
 class Database
 {
     private static ?PDO $connection = null;
-    
     public static function getConnection(): PDO
     {
         if (self::$connection === null) {
@@ -36,6 +36,8 @@ class Database
     
     public static function query(string $sql, array $params = []): \PDOStatement
     {
+        $logger = Logger::getInstance();
+        $logger->info($sql);
         $stmt = self::getConnection()->prepare($sql);
         $stmt->execute($params);
         return $stmt;
@@ -43,6 +45,8 @@ class Database
     
     public static function execute(string $sql, array $params = []): bool
     {
+        $logger = Logger::getInstance();
+        $logger->info($sql);
         return self::query($sql, $params)->rowCount() > 0;
     }
 }
