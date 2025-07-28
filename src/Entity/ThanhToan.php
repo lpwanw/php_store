@@ -29,8 +29,8 @@ class ThanhToan
     #[ORM\Column(name: 'phan_hoi_cong', type: 'json', nullable: true)]
     private ?array $phanHoiCong = null;
 
-    #[ORM\Column(name: 'so_tien', type: 'decimal', precision: 12, scale: 0)]
-    private int $soTien;
+    #[ORM\Column(name: 'so_tien', type: 'float')]
+    private float $soTien;
 
     #[ORM\Column(name: 'tien_te', type: 'string', length: 3)]
     private string $tienTe;
@@ -61,8 +61,8 @@ class ThanhToan
     public function setMaGiaoDich(?string $maGiaoDich): self { $this->maGiaoDich = $maGiaoDich; return $this; }
     public function getPhanHoiCong(): ?array { return $this->phanHoiCong; }
     public function setPhanHoiCong(?array $phanHoiCong): self { $this->phanHoiCong = $phanHoiCong; return $this; }
-    public function getSoTien(): int { return $this->soTien; }
-    public function setSoTien(int $soTien): self { $this->soTien = $soTien; return $this; }
+    public function getSoTien(): float { return $this->soTien; }
+    public function setSoTien(float $soTien): self { $this->soTien = $soTien; return $this; }
     public function getTienTe(): string { return $this->tienTe; }
     public function setTienTe(string $tienTe): self { $this->tienTe = $tienTe; return $this; }
     public function getTrangThai(): string { return $this->trangThai; }

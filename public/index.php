@@ -3,6 +3,10 @@
 // 1. Include Composer's Autoloader
 require '../vendor/autoload.php';
 
+// 2. Load environment variables
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
 // Initialize logger
 use App\Services\Logger;
 $logger = Logger::getInstance();

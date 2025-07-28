@@ -30,7 +30,7 @@ $cardClass = $sizeClasses[$size] ?? $sizeClasses['medium'];
             ?>
                 <img src="<?= htmlspecialchars($hinhAnhChinh->getFullUrl()) ?>" 
                      alt="<?= htmlspecialchars($sanPham->getTen()) ?>"
-                     class="max-w-full max-h-full object-contain">
+                     class="max-w-full max-h-full object-contain scale-90 hover:scale-100 transition-all">
             <?php else: ?>
                 <div class="text-6xl">📱</div>
             <?php endif; ?>

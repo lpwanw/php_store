@@ -11,7 +11,7 @@ class SanPhamController
     public function timKiem()
     {
         $em = require __DIR__ . '/../../config/doctrine.php';
-        
+
         $tuKhoaTimKiem = $_GET['q'] ?? '';
         $danhMucId = $_GET['danh_muc'] ?? null;
         $thuongHieuId = $_GET['thuong_hieu'] ?? null;
@@ -21,13 +21,13 @@ class SanPhamController
         $trang = max(1, intval($_GET['trang'] ?? 1));
         $gioiHan = 12;
         $boQua = ($trang - 1) * $gioiHan;
-        
+
         $qb = $em->createQueryBuilder();
         $qb->select('sp')
            ->from(SanPham::class, 'sp')
            ->where('sp.kichHoat = :kichHoat')
            ->setParameter('kichHoat', true);
-        
+
         if (!empty($tuKhoaTimKiem)) {
             $qb->andWhere($qb->expr()->orX(
                 $qb->expr()->like('LOWER(sp.ten)', ':tuKhoa'),
@@ -35,27 +35,27 @@ class SanPhamController
                 $qb->expr()->like('LOWER(sp.maSanPham)', ':tuKhoa')
             ))->setParameter('tuKhoa', '%' . strtolower($tuKhoaTimKiem) . '%');
         }
-        
+
         if ($danhMucId) {
             $qb->andWhere('sp.danhMuc = :danhMucId')
                ->setParameter('danhMucId', $danhMucId);
         }
-        
+
         if ($thuongHieuId) {
             $qb->andWhere('sp.thuongHieu = :thuongHieuId')
                ->setParameter('thuongHieuId', $thuongHieuId);
         }
-        
+
         if ($giaThapNhat) {
             $qb->andWhere('sp.gia >= :giaThapNhat')
                ->setParameter('giaThapNhat', $giaThapNhat);
         }
-        
+
         if ($giaCaoNhat) {
             $qb->andWhere('sp.gia <= :giaCaoNhat')
                ->setParameter('giaCaoNhat', $giaCaoNhat);
         }
-        
+
         switch ($sapXep) {
             case 'gia_tang':
                 $qb->orderBy('sp.gia', 'ASC');
@@ -74,22 +74,22 @@ class SanPhamController
                 $qb->orderBy('sp.ngayTao', 'DESC');
                 break;
         }
-        
+
         $tongSanPhamQuery = clone $qb;
         $tongSanPham = $tongSanPhamQuery->select('COUNT(sp.id)')->getQuery()->getSingleScalarResult();
         $tongTrang = ceil($tongSanPham / $gioiHan);
-        
+
         $sanPhams = $qb->setFirstResult($boQua)
                       ->setMaxResults($gioiHan)
                       ->getQuery()
                       ->getResult();
-        
+
         $danhMucs = $em->getRepository(DanhMuc::class)
                       ->findBy(['kichHoat' => true], ['thuTu' => 'ASC']);
-        
+
         $thuongHieus = $em->getRepository(ThuongHieu::class)
                          ->findBy(['kichHoat' => true], ['ten' => 'ASC']);
-        
+
         $data = [
             'pageTitle' => 'Tìm Kiếm Sản Phẩm',
             'sanPhams' => $sanPhams,

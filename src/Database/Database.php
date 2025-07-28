@@ -13,19 +13,21 @@ class Database
     {
         if (self::$connection === null) {
             try {
-                $dbPath = __DIR__ . '/../../database/store.sqlite';
-                $dbDir = dirname($dbPath);
+                $host = $_ENV['DB_HOST'] ?? 'localhost';
+                $port = $_ENV['DB_PORT'] ?? 3306;
+                $dbname = $_ENV['DB_NAME'] ?? 'store';
+                $username = $_ENV['DB_USER'] ?? 'root';
+                $password = $_ENV['DB_PASSWORD'] ?? '';
                 
-                if (!is_dir($dbDir)) {
-                    mkdir($dbDir, 0755, true);
-                }
+                $dsn = "mysql:host={$host};port={$port};dbname={$dbname};charset=utf8mb4";
                 
-                self::$connection = new PDO("sqlite:$dbPath");
+                self::$connection = new PDO($dsn, $username, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                 
-                // Enable foreign key constraints
-                self::$connection->exec('PRAGMA foreign_keys = ON;');
+                // Set MySQL specific options
+                self::$connection->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
+                self::$connection->exec("SET sql_mode = 'TRADITIONAL'");
             } catch (PDOException $e) {
                 throw new \Exception("Database connection failed: " . $e->getMessage());
             }

@@ -31,20 +31,20 @@ class DonHang
     #[ORM\Column(name: 'trang_thai_thanh_toan', type: 'string', length: 20)]
     private string $trangThaiThanhToan = 'cho_thanh_toan';
 
-    #[ORM\Column(name: 'tong_phu', type: 'decimal', precision: 12, scale: 0)]
-    private int $tongPhu;
+    #[ORM\Column(name: 'tong_phu', type: 'float')]
+    private float $tongPhu;
 
-    #[ORM\Column(name: 'tien_thue', type: 'decimal', precision: 12, scale: 0)]
-    private int $tienThue = 0;
+    #[ORM\Column(name: 'tien_thue', type: 'float')]
+    private float $tienThue = 0;
 
-    #[ORM\Column(name: 'phi_van_chuyen', type: 'decimal', precision: 12, scale: 0)]
-    private int $phiVanChuyen = 0;
+    #[ORM\Column(name: 'phi_van_chuyen', type: 'float')]
+    private float $phiVanChuyen = 0;
 
-    #[ORM\Column(name: 'tien_giam_gia', type: 'decimal', precision: 12, scale: 0)]
-    private int $tienGiamGia = 0;
+    #[ORM\Column(name: 'tien_giam_gia', type: 'float')]
+    private float $tienGiamGia = 0;
 
-    #[ORM\Column(name: 'tong_tien', type: 'decimal', precision: 12, scale: 0)]
-    private int $tongTien;
+    #[ORM\Column(name: 'tong_tien', type: 'float')]
+    private float $tongTien;
 
     #[ORM\Column(name: 'tien_te', type: 'string', length: 3)]
     private string $tienTe = 'VND';
@@ -153,55 +153,55 @@ class DonHang
         return $this;
     }
 
-    public function getTongPhu(): int
+    public function getTongPhu(): float
     {
         return $this->tongPhu;
     }
 
-    public function setTongPhu(int $tongPhu): self
+    public function setTongPhu(float $tongPhu): self
     {
         $this->tongPhu = $tongPhu;
         $this->calculateTongTien();
         return $this;
     }
 
-    public function getTienThue(): int
+    public function getTienThue(): float
     {
         return $this->tienThue;
     }
 
-    public function setTienThue(int $tienThue): self
+    public function setTienThue(float $tienThue): self
     {
         $this->tienThue = $tienThue;
         $this->calculateTongTien();
         return $this;
     }
 
-    public function getPhiVanChuyen(): int
+    public function getPhiVanChuyen(): float
     {
         return $this->phiVanChuyen;
     }
 
-    public function setPhiVanChuyen(int $phiVanChuyen): self
+    public function setPhiVanChuyen(float $phiVanChuyen): self
     {
         $this->phiVanChuyen = $phiVanChuyen;
         $this->calculateTongTien();
         return $this;
     }
 
-    public function getTienGiamGia(): int
+    public function getTienGiamGia(): float
     {
         return $this->tienGiamGia;
     }
 
-    public function setTienGiamGia(int $tienGiamGia): self
+    public function setTienGiamGia(float $tienGiamGia): self
     {
         $this->tienGiamGia = $tienGiamGia;
         $this->calculateTongTien();
         return $this;
     }
 
-    public function getTongTien(): int
+    public function getTongTien(): float
     {
         return $this->tongTien;
     }

@@ -33,11 +33,11 @@ class ChiTietDonHang
     #[ORM\Column(name: 'so_luong', type: 'integer')]
     private int $soLuong;
 
-    #[ORM\Column(name: 'gia_don_vi', type: 'decimal', precision: 12, scale: 0)]
-    private int $giaDonVi;
+    #[ORM\Column(name: 'gia_don_vi', type: 'float')]
+    private float $giaDonVi;
 
-    #[ORM\Column(name: 'tong_gia', type: 'decimal', precision: 12, scale: 0)]
-    private int $tongGia;
+    #[ORM\Column(name: 'tong_gia', type: 'float')]
+    private float $tongGia;
 
     #[ORM\Column(name: 'ngay_tao', type: 'datetime')]
     private \DateTime $ngayTao;
@@ -119,19 +119,19 @@ class ChiTietDonHang
         return $this;
     }
 
-    public function getGiaDonVi(): int
+    public function getGiaDonVi(): float
     {
         return $this->giaDonVi;
     }
 
-    public function setGiaDonVi(int $giaDonVi): self
+    public function setGiaDonVi(float $giaDonVi): self
     {
         $this->giaDonVi = $giaDonVi;
         $this->calculateTongGia();
         return $this;
     }
 
-    public function getTongGia(): int
+    public function getTongGia(): float
     {
         return $this->tongGia;
     }

@@ -28,11 +28,11 @@ class BienTheSanPham
     #[ORM\Column(name: 'bo_nho', type: 'string', length: 50, nullable: true)]
     private ?string $boNho = null;
 
-    #[ORM\Column(name: 'gia', type: 'decimal', precision: 12, scale: 0)]
-    private int $gia;
+    #[ORM\Column(name: 'gia', type: 'float')]
+    private float $gia;
 
-    #[ORM\Column(name: 'gia_so_sanh', type: 'decimal', precision: 12, scale: 0, nullable: true)]
-    private ?int $giaSoSanh = null;
+    #[ORM\Column(name: 'gia_so_sanh', type: 'float', nullable: true)]
+    private ?float $giaSoSanh = null;
 
     #[ORM\Column(name: 'so_luong_ton', type: 'integer')]
     private int $soLuongTon = 0;
@@ -40,7 +40,7 @@ class BienTheSanPham
     #[ORM\Column(name: 'nguong_ton_thap', type: 'integer')]
     private int $nguongTonThap = 5;
 
-    #[ORM\Column(name: 'trong_luong', type: 'decimal', precision: 8, scale: 3, nullable: true)]
+    #[ORM\Column(name: 'trong_luong', type: 'float', nullable: true)]
     private ?float $trongLuong = null;
 
     #[ORM\Column(name: 'kich_hoat', type: 'boolean')]
@@ -115,23 +115,23 @@ class BienTheSanPham
         return $this;
     }
 
-    public function getGia(): int
+    public function getGia(): float
     {
         return $this->gia;
     }
 
-    public function setGia(int $gia): self
+    public function setGia(float $gia): self
     {
         $this->gia = $gia;
         return $this;
     }
 
-    public function getGiaSoSanh(): ?int
+    public function getGiaSoSanh(): ?float
     {
         return $this->giaSoSanh;
     }
 
-    public function setGiaSoSanh(?int $giaSoSanh): self
+    public function setGiaSoSanh(?float $giaSoSanh): self
     {
         $this->giaSoSanh = $giaSoSanh;
         return $this;
