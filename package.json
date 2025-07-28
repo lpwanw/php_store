@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss -i ./src/input.css -o ./public/css/style.css",
-    "watch-css": "tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
+    "build-css": "tailwindcss -i app/input.css -o ./public/css/style.css",
+    "watch-css": "tailwindcss -i app/input.css -o ./public/css/style.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
