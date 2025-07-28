@@ -70,14 +70,14 @@ function view(string $path, array $data = []): void
     ob_start();
 
     // Include the specific view file. Its output is captured by the buffer.
-    require "../views/{$path}.php";
+    require "../src/Views/{$path}.php";
 
     // Get the captured content from the buffer and clean the buffer.
     $content = ob_get_clean();
 
     // Now, include the main layout file.
     // The $content variable is now available to it.
-    require '../views/layouts/main.php';
+    require '../src/Views/layouts/main.php';
 }
 
 function admin_view(string $path, array $data = []): void
@@ -89,14 +89,14 @@ function admin_view(string $path, array $data = []): void
     ob_start();
 
     // Include the specific view file. Its output is captured by the buffer.
-    require "../views/{$path}.php";
+    require "../src/Views/{$path}.php";
 
     // Get the captured content from the buffer and clean the buffer.
     $content = ob_get_clean();
 
     // Now, include the main layout file.
     // The $content variable is now available to it.
-    require '../views/layouts/admin.php';
+    require '../src/Views/layouts/admin.php';
 }
 
 function component(string $name, array $data = []): void
@@ -105,5 +105,5 @@ function component(string $name, array $data = []): void
     extract($data);
     
     // Include the component file.
-    require "../views/components/{$name}.php";
+    require "../src/Views/components/{$name}.php";
 }
