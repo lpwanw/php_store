@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace App\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'danh_muc')]
-class DanhMuc
+#[ORM\Table(name: 'thuong_hieu')]
+class ThuongHieu
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,24 +21,17 @@ class DanhMuc
     #[ORM\Column(name: 'duong_dan', type: 'string', length: 255, unique: true)]
     private string $duongDan;
 
+    #[ORM\Column(name: 'logo', type: 'string', length: 500, nullable: true)]
+    private ?string $logo = null;
+
     #[ORM\Column(name: 'mo_ta', type: 'text', nullable: true)]
     private ?string $moTa = null;
 
-    #[ORM\Column(name: 'hinh_anh', type: 'string', length: 500, nullable: true)]
-    private ?string $hinhAnh = null;
-
-    #[ORM\ManyToOne(targetEntity: DanhMuc::class, inversedBy: 'danhMucCons')]
-    #[ORM\JoinColumn(name: 'danh_muc_cha_id', referencedColumnName: 'id', nullable: true)]
-    private ?DanhMuc $danhMucCha = null;
-
-    #[ORM\OneToMany(mappedBy: 'danhMucCha', targetEntity: DanhMuc::class)]
-    private Collection $danhMucCons;
+    #[ORM\Column(name: 'website', type: 'string', length: 500, nullable: true)]
+    private ?string $website = null;
 
     #[ORM\Column(name: 'kich_hoat', type: 'boolean')]
     private bool $kichHoat = true;
-
-    #[ORM\Column(name: 'thu_tu', type: 'integer')]
-    private int $thuTu = 0;
 
     #[ORM\Column(name: 'ngay_tao', type: 'datetime')]
     private \DateTime $ngayTao;
@@ -46,14 +39,13 @@ class DanhMuc
     #[ORM\Column(name: 'ngay_cap_nhat', type: 'datetime')]
     private \DateTime $ngayCapNhat;
 
-    #[ORM\OneToMany(mappedBy: 'danhMuc', targetEntity: SanPham::class)]
+    #[ORM\OneToMany(mappedBy: 'thuongHieu', targetEntity: SanPham::class)]
     private Collection $sanPhams;
 
     public function __construct()
     {
         $this->ngayTao = new \DateTime();
         $this->ngayCapNhat = new \DateTime();
-        $this->danhMucCons = new ArrayCollection();
         $this->sanPhams = new ArrayCollection();
     }
 
@@ -84,6 +76,17 @@ class DanhMuc
         return $this;
     }
 
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+        return $this;
+    }
+
     public function getMoTa(): ?string
     {
         return $this->moTa;
@@ -95,31 +98,15 @@ class DanhMuc
         return $this;
     }
 
-    public function getHinhAnh(): ?string
+    public function getWebsite(): ?string
     {
-        return $this->hinhAnh;
+        return $this->website;
     }
 
-    public function setHinhAnh(?string $hinhAnh): self
+    public function setWebsite(?string $website): self
     {
-        $this->hinhAnh = $hinhAnh;
+        $this->website = $website;
         return $this;
-    }
-
-    public function getDanhMucCha(): ?DanhMuc
-    {
-        return $this->danhMucCha;
-    }
-
-    public function setDanhMucCha(?DanhMuc $danhMucCha): self
-    {
-        $this->danhMucCha = $danhMucCha;
-        return $this;
-    }
-
-    public function getDanhMucCons(): Collection
-    {
-        return $this->danhMucCons;
     }
 
     public function isKichHoat(): bool
@@ -130,17 +117,6 @@ class DanhMuc
     public function setKichHoat(bool $kichHoat): self
     {
         $this->kichHoat = $kichHoat;
-        return $this;
-    }
-
-    public function getThuTu(): int
-    {
-        return $this->thuTu;
-    }
-
-    public function setThuTu(int $thuTu): self
-    {
-        $this->thuTu = $thuTu;
         return $this;
     }
 

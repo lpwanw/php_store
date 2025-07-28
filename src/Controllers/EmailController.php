@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Services\EmailService;
-use App\Entity\NguoiDung;
-use App\Entity\DonHang;
+use App\Models\NguoiDung;
+use App\Models\DonHang;
 
 class EmailController
 {

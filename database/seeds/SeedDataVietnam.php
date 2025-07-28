@@ -6,12 +6,12 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
 $dotenv->load();
 
-use App\Entity\ThuongHieu;
-use App\Entity\DanhMuc;
-use App\Entity\SanPham;
-use App\Entity\ThongSoSanPham;
-use App\Entity\BienTheSanPham;
-use App\Entity\HinhAnhSanPham;
+use App\Models\ThuongHieu;
+use App\Models\DanhMuc;
+use App\Models\SanPham;
+use App\Models\ThongSoSanPham;
+use App\Models\BienTheSanPham;
+use App\Models\HinhAnhSanPham;
 
 class SeedDataVietnam
 {

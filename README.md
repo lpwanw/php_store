@@ -186,8 +186,8 @@ Lệnh này sẽ tạo:
 #### Sử dụng Entities trong Controllers
 
 ```php
-use App\Entity\NguoiDung;
-use App\Entity\SanPham;
+use App\Models\NguoiDung;
+use App\Models\SanPham;
 
 class ProductController
 {

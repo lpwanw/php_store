@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Entity\GioHang;
-use App\Entity\PhienKhach;
-use App\Entity\BienTheSanPham;
-use App\Entity\NguoiDung;
+use App\Models\GioHang;
+use App\Models\PhienKhach;
+use App\Models\BienTheSanPham;
+use App\Models\NguoiDung;
 use Doctrine\ORM\EntityManager;
 
 class GioHangController

@@ -2,7 +2,7 @@
 /**
  * Product Card Component
  * 
- * @param App\Entity\SanPham $sanPham - Product entity
+ * @param App\Models\SanPham $sanPham - Product entity
  * @param string $size - Card size: 'small', 'medium', 'large' (default: 'medium')
  * @param bool $showDescription - Show product description (default: true)
  */

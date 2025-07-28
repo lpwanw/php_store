@@ -6,7 +6,7 @@ use Doctrine\ORM\ORMSetup;
 
 // Create a simple "default" Doctrine ORM configuration for Attributes
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [__DIR__ . '/../src/Entity'],
+    paths: [__DIR__ . '/../src/Models'],
     isDevMode: true,
 );
 

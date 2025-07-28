@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Entity\SanPham;
-use App\Entity\DanhMuc;
-use App\Entity\ThuongHieu;
+use App\Models\SanPham;
+use App\Models\DanhMuc;
+use App\Models\ThuongHieu;
 
 class SanPhamController
 {
